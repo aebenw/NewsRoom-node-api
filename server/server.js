@@ -1,11 +1,10 @@
 const express = require('express');
-const {mongoose} = require('./db/mongoose');
+const { mongoose } = require('./db/mongoose');
 const bodyParser = require('body-parser');
 
-const{User} = require('./models/users');
-// const {userPost} = require('./routes/userRoutes');
+
 const app = express();
-const routes = require('./routes/userRoutes');
+const routes = require('./routes/routes');
 
 app.use(bodyParser.json());
 app.on('mount', (p) => {
