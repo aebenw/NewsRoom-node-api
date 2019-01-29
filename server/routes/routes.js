@@ -5,7 +5,11 @@ const news = require('../controller/newsController');
 module.exports = function (app) {
 
   app.route('/users')
-    .post(user.createUser);
+    .post(user.createUser)
+    .post(user.login);
+
+  app.route('/login')
+    .post(user.login);
 
   app.route('/news')
     .get(news.callSources);
