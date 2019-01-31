@@ -1,14 +1,9 @@
 const mongoose = require('mongoose');
-// const mongo =
 const Schema = mongoose.Schema;
-// const ObjectID =
 var ObjectId = mongoose.Schema.Types.ObjectId;
 
 
 const SourceSchema = new Schema({
-  // _id: {
-  //   type: new ObjectId()
-  // },
   id: {
     type: String
   },

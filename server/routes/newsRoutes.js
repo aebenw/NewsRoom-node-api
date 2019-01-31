@@ -5,6 +5,9 @@ const newsPath = express();
   newsPath.route('/sources')
     .get(news.callSources);
 
+  newsPath.route('/sources/:id')
+    .get(news.showSource);
+
   newsPath.route('/articles')
     .get(news.callArticles);
 

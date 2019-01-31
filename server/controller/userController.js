@@ -2,7 +2,6 @@ const mongoose = require('mongoose');
 const {User} = require('../models/Users');
 
 exports.createUser  = (req, res) => {
-  console.log(req.body);
     const user = new User(req.body);
     user.save().then(doc => {
       console.log(JSON.stringify(doc, undefined, 2));
@@ -11,9 +10,9 @@ exports.createUser  = (req, res) => {
 };
 
 exports.login = (req, res) => {
-  User.findOne({email: req.email})
+  User.findOne({email: req.body.email})
   .then(user => {
-    console.log(user);
+    // console.log(user);
     res.status(200).send(user);
   });
 };

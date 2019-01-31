@@ -12,15 +12,12 @@ exports.callSources = async (req, res) => { /* ESLint-disable-line */
     country: 'us',
     category: "general"
   })
-   // let answer = response.sources.map(async source => {
-   //    let created = await findOrCreateSource(source);
-   //    return created
-   // });
+
   let answer = await asyncMapping(response.sources, findOrCreateSource)
 
-    Promise.all(answer).then(complete => {
-      res.status(200).send(complete);
-   })
+  Promise.all(answer).then(complete => {
+    res.status(200).send(complete);
+ })
 };
 
 exports.callArticles = async (req, res) => {
@@ -37,43 +34,54 @@ exports.callArticles = async (req, res) => {
   })
 }
 
+exports.showSource = (req, res) => {
+  const id = req.params.id;
+  Source.findById(id).then((source) => {
+    if(!source) res.status(400).send("ID is invalid");
+    console.log(source)
+    res.status(200).send(JSON.stringify(source, undefined, 2));
+  });
+}
+
 
 async function findOrCreateSource(source){
   let found = await Source.find({id: source.id})
   if(!found.length){
     const newSource = new Source(source);
-    found = await newSource.save().then(doc => doc, (e) => console.log("e"));
+    found = await newSource.save()
+    .then(doc => doc, (e) => console.log("e"));
   }
     return found;
  };
 
 async function asyncMapping (objects, callback){
   return objects.map(async(obj) => await callback(obj))
-  // return response
 }
 
 async function findOrCreateArticle(article){
   let sourceId = article.source.id
   let sourceName = article.source.name
   let source = await Source.findOne({id: sourceId, name: sourceName})
-  // console.log(article.source, "------------------------",source)
 
   let foundArticle = await Article.findOne({id: article.id})
   if(!foundArticle || !foundArticle.length){
     delete article["source"]
 
     const newArticle = new Article(article);
-    foundArticle = await newArticle.save().then(doc => doc, (e) => console.log(e));
+    foundArticle = await newArticle.save()
+    .then(doc => doc, (e) => console.log(e));
+
+    if(source) populateRelationships(source, foundArticle)
+
   }
-  // console.log(source)
-  if(source) populateRelationships(source, foundArticle)
   return foundArticle;
 };
 
 function populateRelationships(source, article){
   source.articles.push(article);
   article.source = source;
-  source.save().then(doc => console.log(source.articles), e => console.log(e))
-  article.save(doc => console.log(article.source), e => console.log(e))
-  console.log(article, source)
+  source.save()
+  .then(doc => console.log(), e => console.log(e))
+  article.save()
+  .then(doc => console.log(), e => console.log(e))
 }
