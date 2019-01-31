@@ -36,13 +36,13 @@ exports.callArticles = async (req, res) => {
 
 exports.showSource = (req, res) => {
   const id = req.params.id;
-  Source.findById(id).then((source) => {
-    if(!source) res.status(400).send("ID is invalid");
-    console.log(source)
-    res.status(200).send(JSON.stringify(source, undefined, 2));
+  let source = Source.findById(id)
+  .populate('articles')
+  .exec((err, posts) => {
+    console.log(posts)
+    res.status(200).send(JSON.stringify(posts, undefined, 2));
   });
 }
-
 
 async function findOrCreateSource(source){
   let found = await Source.find({id: source.id})
