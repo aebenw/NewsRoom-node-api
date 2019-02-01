@@ -37,9 +37,8 @@ exports.callArticles = async (req, res) => {
 exports.showSource = (req, res) => {
   const id = req.params.id;
   let source = Source.findById(id)
-  .populate('articles')
+  .populate({path: 'articles', select: "author title description url urlToImage content"})
   .exec((err, posts) => {
-    console.log(posts)
     res.status(200).send(JSON.stringify(posts, undefined, 2));
   });
 }
@@ -62,9 +61,10 @@ async function findOrCreateArticle(article){
   let sourceId = article.source.id
   let sourceName = article.source.name
   let source = await Source.findOne({id: sourceId, name: sourceName})
-
-  let foundArticle = await Article.findOne({id: article.id})
-  if(!foundArticle || !foundArticle.length){
+  // console.log(JSON.stringify(article, undefined, 2))
+  let foundArticle = await Article.findOne({title: article.title})
+  // console.log(foundArticle, source)
+  if(!foundArticle){
     delete article["source"]
 
     const newArticle = new Article(article);
