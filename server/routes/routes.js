@@ -1,10 +1,12 @@
 const userPath = require('./userRoutes');
-const newsPath = require('./newsRoutes');
+const sourcePath = require('./sourceRoutes');
+const articlePath = require('./articleRoutes');
 
 
 module.exports = function (app) {
 
   app.use('/user', userPath);
-  app.use('/news', newsPath);
+  app.use('/news/sources', sourcePath);
+  app.use('/news/articles', articlePath);
 
 };

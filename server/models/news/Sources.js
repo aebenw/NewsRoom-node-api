@@ -1,6 +1,6 @@
 const mongoose = require('mongoose');
 const Schema = mongoose.Schema;
-var ObjectId = mongoose.Schema.Types.ObjectId;
+var ObjectId = Schema.Types.ObjectId;
 
 
 const SourceSchema = new Schema({
@@ -19,7 +19,9 @@ const SourceSchema = new Schema({
   category:{
     type: String
   },
-  articles: [{type: ObjectId, ref: 'Article'}]
+  articles: [{type: ObjectId, ref: 'Article'}],
+  users: [{type: ObjectId, ref: 'Users'}]
+
 });
 
 const Source = mongoose.model('Source', SourceSchema);

@@ -1,5 +1,6 @@
 const mongoose = require('mongoose');
 const {User} = require('../models/Users');
+const {Article} = require('../models/news/Articles');
 
 exports.createUser  = (req, res) => {
     const user = new User(req.body);
@@ -13,4 +14,13 @@ exports.login = (req, res) => {
   .then(user => {
     res.status(200).send(user);
   });
+};
+
+exports.favArticle = async (req, res) => {
+  let user = await User.findById(req.body.userID).then(doc => doc)
+  let article = await Article.findById(req.body.articleID).then(doc => doc)
+  user.articles.push(article)
+  article.users.push(user)
+  user.save().then(null, (e) => console.log(e))
+  article.save().then(null, (e) => console.log(e))
 };

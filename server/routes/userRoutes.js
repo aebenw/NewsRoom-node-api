@@ -9,5 +9,8 @@ const userPath = express();
   userPath.route('/login')
     .post(user.login);
 
+  userPath.route('/favArticle')
+    .post(user.favArticle);
+
 
 module.exports = userPath;
