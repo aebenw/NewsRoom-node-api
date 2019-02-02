@@ -1,5 +1,6 @@
 const mongoose = require('mongoose');
 var Schema = mongoose.Schema;
+var ObjectId = Schema.Types.ObjectId;
 
 const UserSchema = new Schema({
   name: {
@@ -14,9 +15,13 @@ const UserSchema = new Schema({
     type: String,
     required: true
   },
-  posts: [{
+  articles: [{
     type: mongoose.Schema.Types.ObjectId,
-    ref: 'Post'
+    ref: 'Articles'
+  }],
+  sources: [{
+    type: mongoose.Schema.Types.ObjectId,
+    ref: 'Sources'
   }]
 });
 
