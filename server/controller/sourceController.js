@@ -1,11 +1,11 @@
-const { API, LINK_PREVIEW } = require('../constants/api');
-const NewsAPI = require('newsapi');
+import NewsAPI from 'newsapi';
 const newsapi = new NewsAPI(API);
-const { Source } = require('../models/news/Sources');
-const { asyncMapping } = require('./connectingFuncs')
+import { API } from '../constants/api';
+import { Source }  from '../models/news';
+import { asyncMapping } from './connectingFuncs'
 
 
-exports.callSources = async (req, res) => { /* ESLint-disable-line */
+export const callSources = async (req, res) => {
   let response = await newsapi.v2.sources({
     language: 'en',
     country: 'us',
@@ -19,9 +19,10 @@ exports.callSources = async (req, res) => { /* ESLint-disable-line */
 };
 
 
-exports.showSource = (req, res) => {
+export const showSource = (req, res) => {
   const id = req.params.id;
   let source = Source.findById(id)
+  source
   .populate({path: 'articles', select: "author title description url urlToImage content"})
   .exec((err, posts) => {
     res.status(200).send(JSON.stringify(posts, undefined, 2));
@@ -33,7 +34,7 @@ async function findOrCreateSource(source){
   if(!found.length){
     const newSource = new Source(source);
     found = await newSource.save()
-    .then(doc => doc, (e) => console.log("e"));
+    .then(doc => doc, (e) => e);
   }
     return found;
- };
+}
