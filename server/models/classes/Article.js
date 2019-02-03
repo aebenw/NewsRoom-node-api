@@ -1,18 +1,3 @@
-import mongoose, {Schema} from 'mongoose';
-import Source from './Sources'
-var ObjectId = Schema.Types.ObjectId;
-
-const ArticleSchema = new Schema({
-  author:{type: String},
-  title: {type: String},
-  description: {type: String},
-  url: {type: String},
-  urlToImage: {type: String},
-  content: {type: String},
-  source: {type: ObjectId, ref: 'Sources'},
-  users: [{type: ObjectId, ref: 'Users'}]
-});
-
 class ArticleClass {
 
   static async findOrCreate(article){
@@ -36,15 +21,6 @@ class ArticleClass {
       this.source = source;
       this.save().then(null, e => e)
   }
-
-  addUser(user){
-    this.users.push(user)
-  }
 }
 
-
-ArticleSchema.loadClass(ArticleClass)
-const Article = mongoose.model('Article', ArticleSchema);
-
-
-export default Article;
+export default ArticleClass

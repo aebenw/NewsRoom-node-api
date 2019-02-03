@@ -24,6 +24,16 @@ const SourceSchema = new Schema({
 
 });
 
+class SourceClass{
+
+  addArticle(article){
+    this.articles.push(article);
+    this.save().then(null, e => e)
+  }
+
+}
+
+SourceSchema.loadClass(SourceClass)
 const Source = mongoose.model('Source', SourceSchema);
 
-module.exports = {Source};
+export default Source

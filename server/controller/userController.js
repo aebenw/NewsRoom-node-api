@@ -1,6 +1,5 @@
-const mongoose = require('mongoose');
-const {User} = require('../models/Users');
-const {Article} = require('../models/news/Articles');
+import { User, Article } from '../models';
+// const {Article} = require('../models/news/Articles');
 
 exports.createUser  = (req, res) => {
     const user = new User(req.body);
@@ -21,6 +20,7 @@ exports.favArticle = async (req, res) => {
   let article = await Article.findById(req.body.articleID).then(doc => doc)
   user.articles.push(article)
   article.users.push(user)
-  user.save().then(null, (e) => console.log(e))
-  article.save().then(null, (e) => console.log(e))
+  user.save().then(null, (e) => e)
+  article.save().then(null, (e) => e);
+  res.status(200)
 };
