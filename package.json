@@ -4,7 +4,7 @@
   "description": "",
   "main": "server/server.js",
   "scripts": {
-    "test": "export NODE_ENV=test && nodemon --exec 'mocha */**.test.js --require babel-polyfill --require babel-register'",
+    "test": "export NODE_ENV=test && nodemon --exec 'mocha */tests/**.test.js --require babel-polyfill --require babel-register'",
     "start": "nodemon server/server.js --exec babel-node --presets babel-preset-env",
     "v": "nodemon inspect server/server.js --exec babel-node --presets babel-preset-env"
   },

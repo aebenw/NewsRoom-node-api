@@ -6,8 +6,12 @@ export const postComment = (req, res) => {
     }, e => res.status(400).send(e))
 };
 
-export const showComment = (req, res) => {
-  Comment.findById(req.params.id).then(doc => {
-    res.status(200).send(doc)
-  }, (e) => res.status(400).send(e))
+export const showComment = async (req, res) => {
+  Comment.findById(req.params.id)
+  .populate({path: 'user', select: 'name'})
+  .exec()
+  .then(doc => {
+      res.status(200).send(doc)
+  })
+
 }

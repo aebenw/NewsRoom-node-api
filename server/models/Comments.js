@@ -7,13 +7,25 @@ const CommentSchema = new Schema({
   },
   user: {
     type: ObjectId,
-    ref: 'Users'
+    ref: 'User'
   },
   article: {
     type: ObjectId,
     ref: 'Articles'
   }
 });
+
+  //*****TRYING TO WORK ON MIDDLEWARE FOR AUTOMATIC POPULATION***//
+// CommentSchema.post('find', async (doc) => {
+//   console.log(doc, "________________")
+//   await doc.populate({path: 'user', select: 'name'})
+//   .execPopulate()
+// })
+// CommentSchema.pre('find',  () => {
+//   console.log(this, "_________________")
+//   this.populate({path: 'user', select: 'name'})
+//   .execPopulate()
+// })
 
 const Comment = mongoose.model('Comment', CommentSchema)
 

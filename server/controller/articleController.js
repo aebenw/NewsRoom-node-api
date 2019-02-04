@@ -27,14 +27,3 @@ export const showArticle = (req, res) => {
     res.status(200).send(JSON.stringify(article, undefined, 2));
   });
 }
-
-// async function findOrCreateArticle(article){
-//   let {source: {id, name}} = article
-//   let source = await Source.findOne({id, name})
-//       delete article["source"]
-//
-//   let foundArticle = await Article.findOrCreate(article)
-//
-//
-//   return foundArticle;
-// }

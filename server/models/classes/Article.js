@@ -1,3 +1,5 @@
+import { Article, Source } from '../news'
+
 class ArticleClass {
 
   static async findOrCreate(article){
@@ -20,6 +22,10 @@ class ArticleClass {
   setSource(source){
       this.source = source;
       this.save().then(null, e => e)
+  }
+
+  addUser(user){
+    this.users.push(user)
   }
 }
 
