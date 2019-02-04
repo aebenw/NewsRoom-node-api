@@ -1,5 +1,4 @@
 import { User, Article } from '../models';
-// const {Article} = require('../models/news/Articles');
 
 exports.createUser  = (req, res) => {
     const user = new User(req.body);

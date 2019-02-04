@@ -1,3 +1,3 @@
 // class CommentClass {
-//   get
+//   static
 // }
