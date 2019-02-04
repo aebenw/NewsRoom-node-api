@@ -1,6 +1,6 @@
-import mongoose, {Schema} from 'mongoose';
+import mongoose, { Schema } from 'mongoose';
 import Source from './Sources'
-var ObjectId = Schema.Types.ObjectId;
+const { Types: {ObjectId} } = Schema
 
 const ArticleSchema = new Schema({
   author:{type: String},

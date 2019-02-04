@@ -1,9 +1,13 @@
-import Comment from '../models/Comments';
+import { Comment } from '../models';
 
 export const postComment = (req, res) => {
-  console.log(req.body.content)
-    Comment.create({content: req.body.content}).then(doc => {
-      console.log(doc)
+    Comment.create({content: req.body.content, user: req.body.user}).then(doc => {
       res.status(200).send(doc)
     }, e => res.status(400).send(e))
 };
+
+export const showComment = (req, res) => {
+  Comment.findById(req.params.id).then(doc => {
+    res.status(200).send(doc)
+  }, (e) => res.status(400).send(e))
+}

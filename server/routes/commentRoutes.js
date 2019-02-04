@@ -4,6 +4,8 @@ const commentPath = express();
 
   commentPath.route('/')
     .post(comment.postComment);
+  commentPath.route('/:id')
+    .get(comment.showComment);
 
 
 module.exports = commentPath;
