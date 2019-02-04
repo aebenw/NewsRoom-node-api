@@ -1,16 +1,16 @@
 import mongoose, { Schema } from 'mongoose';
-const { ObjectID } = require('mongodb');
+const { Types: {ObjectId} } = Schema
 
 const CommentSchema = new Schema({
   content: {
     type: String
   },
   user: {
-    type: ObjectID,
+    type: ObjectId,
     ref: 'Users'
   },
   article: {
-    type: ObjectID,
+    type: ObjectId,
     ref: 'Articles'
   }
 });

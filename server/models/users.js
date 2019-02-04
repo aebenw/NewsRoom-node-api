@@ -1,6 +1,5 @@
-const mongoose = require('mongoose');
-var Schema = mongoose.Schema;
-var ObjectId = Schema.Types.ObjectId;
+import mongoose, { Schema } from 'mongoose';
+const { Types: { ObjectId } } = Schema
 
 const UserSchema = new Schema({
   name: {
@@ -16,12 +15,16 @@ const UserSchema = new Schema({
     required: true
   },
   articles: [{
-    type: mongoose.Schema.Types.ObjectId,
+    type: ObjectId,
     ref: 'Articles'
   }],
   sources: [{
-    type: mongoose.Schema.Types.ObjectId,
+    type: ObjectId,
     ref: 'Sources'
+  }],
+  comments: [{
+    type: ObjectId,
+    ref: 'Comment'
   }]
 });
 

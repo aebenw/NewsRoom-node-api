@@ -1,6 +1,5 @@
-const mongoose = require('mongoose');
-const Schema = mongoose.Schema;
-var ObjectId = Schema.Types.ObjectId;
+import mongoose, { Schema } from 'mongoose';
+const { Types: {ObjectId} } = Schema
 
 
 const SourceSchema = new Schema({

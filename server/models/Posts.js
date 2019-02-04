@@ -1,12 +1,12 @@
-const mongoose = require('mongoose');
-const { ObjectID } = require('mongodb');
+import mongoose, { Schema } from 'mongoose';
+const { Types: { ObjectId } } = Schema
 
 const Post = mongoose.model('Post', {
   content: {
     type: String
   },
   user: {
-    type: ObjectID,
+    type: ObjectId,
     ref: 'User'
   }
 });
