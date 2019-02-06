@@ -3,6 +3,7 @@ const express = require('express');
 const { mongoose } = require('./db/mongoose');
 const bodyParser = require('body-parser');
 const cors = require('cors');
+import { ApolloServer } from 'apollo-server-express'
 
 
 const app = express();

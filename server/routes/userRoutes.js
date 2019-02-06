@@ -12,5 +12,8 @@ const userPath = express();
   userPath.route('/favArticle')
     .post(user.favArticle);
 
+  userPath.route('/followSource')
+    .post(user.followSource);
+
 
 module.exports = userPath;
