@@ -1,3 +1,6 @@
+// Just working with Apollo and testing it routes
+// Hope to build a server and choose between normal API or Apollo
+
 require('./config/config')
 const express = require('express');
 // const { mongoose } = require('./db/mongoose');

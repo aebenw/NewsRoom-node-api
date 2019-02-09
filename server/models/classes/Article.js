@@ -1,22 +1,27 @@
-import { Article, Source } from '../news'
+import { Article, Source, Category } from '../news'
 
 class ArticleClass {
 
-  static async findOrCreate(article){
-    let {title, source: {id, name}} = article
-    let source = await Source.findOne({id, name});
+  static async findOrCreateWithSource(article){
+    console.log(article)
+    let { source: {id, name}} = article
+    let source = await Source.findOne({givenID: id, name});
     delete article["source"]
-    let foundArticle;
-    foundArticle = await Article.findOne({title})
-    if(!foundArticle){
-      foundArticle = await Article.create(article)
-      .then(doc => doc, (e) => e);
+    let articleDoc = Article.findOrCreate(article);
+
+    if(source && !articleDoc.source) {
+        await source.addArticle(articleDoc);
+        articleDoc.setSource(source);
     }
-    if(source && !foundArticle.source) {
-        await source.addArticle(foundArticle);
-        foundArticle.setSource(source);
+    return articleDoc
+  }
+
+  static async findOrCreate(data){
+    let article = await Article.findOne({title: data.title})
+    if(!article){
+      article = await Article.create(data)
     }
-    return foundArticle
+    return article
   }
 
   setSource(source){

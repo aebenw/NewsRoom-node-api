@@ -1,9 +1,10 @@
 import mongoose, { Schema } from 'mongoose';
+import { SourceClass } from '../classes'
 const { Types: {ObjectId} } = Schema
 
 
 const SourceSchema = new Schema({
-  id: {
+  givenID: {
     type: String
   },
   name: {
@@ -15,24 +16,14 @@ const SourceSchema = new Schema({
   url: {
     type: String
   },
-  category:{
-    type: String
-  },
+  category: { type: ObjectId, ref: 'Category'},
   articles: [{type: ObjectId, ref: 'Article'}],
   users: [{type: ObjectId, ref: 'Users'}]
 
 });
 
-class SourceClass{
-
-  addArticle(article){
-    this.articles.push(article);
-    this.save().then(null, e => e)
-  }
-
-}
 
 SourceSchema.loadClass(SourceClass)
 const Source = mongoose.model('Source', SourceSchema);
-
+// console.log(Source)
 export default Source
