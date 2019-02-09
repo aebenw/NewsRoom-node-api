@@ -13,5 +13,3 @@ module.exports = function (app) {
   app.use('/news/articles', articlePath);
 
 };
-
-    // "test": "nodemon --exec 'mocha */**.test.js'",

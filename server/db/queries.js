@@ -1,3 +1,0 @@
-function findSourceFromArticle (id, name){
-
-}

@@ -11,11 +11,9 @@ export const callArticles = async (req, res) => {
     category: "general"
   })
 
-  let response = await asyncMapping(articles.articles, Article.findOrCreate)
+  let response = await asyncMapping(articles.articles, Article.findOrCreateWithSource)
 
-  Promise.all(response).then(complete => {
-    res.status(200).send(complete)
-  })
+  res.status(200).send(response)
 }
 
 export const showArticle = (req, res) => {

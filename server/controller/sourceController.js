@@ -1,7 +1,7 @@
 import NewsAPI from 'newsapi';
 const newsapi = new NewsAPI(API);
 import { API } from '../constants/api';
-import { Source }  from '../models/news';
+import { Source }  from '../models';
 import { asyncMapping } from './connectingFuncs'
 
 
@@ -11,13 +11,12 @@ export const callSources = async (req, res) => {
     country: 'us',
     category: "general"
   })
-  let answer = await asyncMapping(response.sources, findOrCreateSource)
 
-  Promise.all(answer).then(complete => {
-    res.status(200).send(complete);
- })
+  let answer = await asyncMapping(response.sources, Source.findOrCreateWithCat)
+  res.status(200).send(answer)
+
+
 };
-
 
 export const showSource = (req, res) => {
   const id = req.params.id;
@@ -27,14 +26,4 @@ export const showSource = (req, res) => {
   .exec((err, posts) => {
     res.status(200).send(JSON.stringify(posts, undefined, 2));
   });
-}
-
-async function findOrCreateSource(source){
-  let found = await Source.find({id: source.id})
-  if(!found.length){
-    const newSource = new Source(source);
-    found = await newSource.save()
-    .then(doc => doc, (e) => e);
-  }
-    return found;
 }
