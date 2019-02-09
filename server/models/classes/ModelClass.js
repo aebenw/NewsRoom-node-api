@@ -1,26 +1,25 @@
-// Attempt at super class but loadclass but mongoose loadclass
-// isn't working properly
-// doesn't recoginze "this" to refer to a document
-// or the model in static methods
+// Attempt at super class to hold methods for all Models
+// like findOrCreateBy
 
 
 class ModelClass {
   constructor(model){
+    console.log(model)
     this.model = model
   }
 
   static async findOrCreateByID(instance){
-  let answer = await this.findOne({id: instance})
+  let answer = await this.model.findOne({id: instance})
     if(!answer){
-      answer = await this.create({identifier: instance})
+      answer = await this.model.create({identifier: instance})
     }
     return answer
   }
 
   static async findOrCreate(identifier, instance){
-  let answer =  await this.findOne({[identifier]: instance})
+  let answer =  await this.model.findOne({[identifier]: instance})
     if(!answer){
-      answer =  await this.create({identifier: instance})
+      answer =  await this.model.create({identifier: instance})
     }
     return answer
   }

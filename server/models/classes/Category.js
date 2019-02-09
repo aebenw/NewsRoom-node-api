@@ -1,11 +1,10 @@
-import { Category } from '../'
 
 class CategoryClass  {
 
   static async findOrCreateByName(name){
-    let cat = await Category.findOne({name})
+    let cat = await this.findOne({name})
       if(!cat){
-        cat = await Category.create({name})
+        cat = await this.create({name})
       }
       return cat
     }

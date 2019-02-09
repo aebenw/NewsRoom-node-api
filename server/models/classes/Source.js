@@ -1,7 +1,7 @@
 import { Source, Category } from '../'
 
 
-class SourceClass{
+class SourceClass {
 
   addArticle(article){
     this.articles.push(article);
@@ -9,9 +9,9 @@ class SourceClass{
   }
 
   static async findOrCreate(source){
-    let found = await Source.find({givenID: source.id})
+    let found = await this.findOne({id: source.id})
     if(!found.length){
-      found = await Source.create(source)
+      found = await this.create(source)
     }
       return found;
   }
@@ -23,10 +23,9 @@ class SourceClass{
     let foundSource = await Source.findOrCreate(source)
 
 
-    cat.sources.push(foundSource);
+    cat.sources.push(foundSource._id);
     await cat.save()
-
-    foundSource.category = cat._id
+    foundSource.category = cat
     await foundSource.save()
 
     return foundSource
