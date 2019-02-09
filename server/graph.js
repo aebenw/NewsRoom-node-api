@@ -8,13 +8,20 @@ const express = require('express');
 const cors = require('cors');
 import { ApolloServer } from 'apollo-server-express'
 import { typeDefs, resolvers } from './graphql'
+import NewsAPI from './graphql/dataSources/newsAPI'
 
 
 // const routes = require('./routes/routes');
 
 const app = express();
-const server = new ApolloServer({ typeDefs, resolvers })
 app.use(cors());
+const server = new ApolloServer({
+    typeDefs,
+    resolvers,
+    dataSources: () => ({
+      newsAPI: new NewsAPI()
+    })
+  })
 
 server.applyMiddleware({app})
 

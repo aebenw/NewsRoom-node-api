@@ -1,6 +1,5 @@
 import mongoose, { Schema } from 'mongoose';
 import { ArticleClass } from '../classes'
-// import Source from './Sources'
 const { Types: {ObjectId} } = Schema
 
 const ArticleSchema = new Schema({

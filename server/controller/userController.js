@@ -15,8 +15,10 @@ exports.login = (req, res) => {
 };
 
 exports.favArticle = async (req, res) => {
-  let user = await User.findById(req.body.userID).then(doc => doc)
-  let article = await Article.findById(req.body.articleID).then(doc => doc)
+  console.log(req.body)
+  let user = await User.findById(req.body.userID)
+  console.log(user)
+  let article = await Article.findById(req.body.articleID)
   user.articles.push(article)
   article.users.push(user)
   user.save().then(null, (e) => e)

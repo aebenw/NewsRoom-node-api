@@ -16,12 +16,10 @@ export const callArticles = async (req, res) => {
   res.status(200).send(response)
 }
 
-export const showArticle = (req, res) => {
+export const showArticle = async (req, res) => {
   const id = req.params.id;
-  let article = Article.findById(id).then(doc => doc, e => e)
-  article
-  .populate({path: 'sources', select: "name"})
-  .exec((err, article) => {
-    res.status(200).send(JSON.stringify(article, undefined, 2));
-  });
+  let article = await Article.findById(id)
+  console.log(article)
+  article.populate('source', "name")
+  res.status(200).send(JSON.stringify(article, undefined, 2));
 }
