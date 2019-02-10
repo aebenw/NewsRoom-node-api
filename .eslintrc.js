@@ -60,7 +60,6 @@ module.exports = {
             "property"
         ],
         "dot-notation": "off",
-        "eol-last": "error",
         "eqeqeq": "error",
         "func-call-spacing": "error",
         "func-name-matching": "error",

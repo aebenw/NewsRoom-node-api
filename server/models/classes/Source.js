@@ -1,4 +1,5 @@
 import { Source, Category } from '../'
+import { getImageURL } from './Favicon'
 
 
 class SourceClass {
@@ -10,8 +11,12 @@ class SourceClass {
 
   static async findOrCreate(source){
     let found = await this.findOne({id: source.id})
-    if(!found.length){
+    // console.log(found)
+    if(!found || !found._doc){
+      console.log("inside conditional")
+      let image = await getImageURL(source.url)
       found = await this.create(source)
+      found.img = image
     }
       return found;
   }

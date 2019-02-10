@@ -13,6 +13,7 @@ export const callSources = async (req, res) => {
   })
 
   let answer = await asyncMapping(response.sources, Source.findOrCreateWithCat)
+  console.log(answer)
   res.status(200).send(answer)
 
 

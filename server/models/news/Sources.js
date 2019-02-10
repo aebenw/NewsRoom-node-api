@@ -16,6 +16,9 @@ const SourceSchema = new Schema({
   url: {
     type: String
   },
+  img: {
+    type: String
+  },
   category: { type: ObjectId, ref: 'Category'},
   articles: [{type: ObjectId, ref: 'Article'}],
   users: [{type: ObjectId, ref: 'Users'}]
