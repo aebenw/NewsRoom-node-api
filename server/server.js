@@ -13,10 +13,8 @@ const routes = require('./routes/routes');
 
 app.use(bodyParser.json());
 app.use(cors());
-// app.use(session({secret: "worldly"}))
-app.on('mount', (p) => {
-  console.log(p, "on mount, p");
-});
+app.use(session({ secret: "worldly", resave: false, saveUninitialized: false}))
+
 
 routes(app);
 

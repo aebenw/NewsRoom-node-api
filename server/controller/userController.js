@@ -1,17 +1,28 @@
 import { User, Article, Source } from '../models';
 
-exports.createUser  = (req, res) => {
-    const user = new User(req.body);
-    user.save().then(doc => {
-      res.status(200).send(doc);
-    }, (e) => res.status(400).send(e));
+exports.createUser  = async (req, res) => {
+  try {
+    const user = await User.create(req.body);
+    req.session.user = user
+    res.status(200).send(user);
+  } catch (e) {
+    res.send(e)
+  }
 };
 
-exports.login = (req, res) => {
-  User.findOne({email: req.body.email})
-  .then(user => {
-    res.status(200).send(user);
-  });
+exports.login = async (req, res) => {
+  try {
+    let user = await User.findOne({email: req.body.email})
+    if(user){
+      if(user.password === req.body.password){
+        req.session.user = user
+        console.log(req.session, req.cookies)
+        res.send(user)
+      } else res.send({error: 'password is incorrect'})
+    } else res.send({error: 'email does not exist'})
+  } catch (e) {
+    res.send(e)
+  }
 };
 
 exports.favArticle = async (req, res) => {

@@ -18,8 +18,8 @@ export const callArticles = async (req, res) => {
 
 export const showArticle = async (req, res) => {
   const id = req.params.id;
-  let article = await Article.findById(id)
-  console.log(article)
-  article.populate('source', "name")
+  let article = await Article.findById(id).populate('source', 'name')
+  // article = await article.populate({path: 'Source', select: "name"})
+  // article = await article.populate('source', 'name')
   res.status(200).send(JSON.stringify(article, undefined, 2));
 }

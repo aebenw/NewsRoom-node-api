@@ -9,7 +9,7 @@ const ArticleSchema = new Schema({
   url: {type: String},
   urlToImage: {type: String},
   content: {type: String},
-  source: {type: ObjectId, ref: 'Sources'},
+  source: {type: ObjectId, ref: 'Source'},
   users: [{type: ObjectId, ref: 'Users'}]
 });
 

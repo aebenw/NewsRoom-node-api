@@ -11,9 +11,7 @@ class SourceClass {
 
   static async findOrCreate(source){
     let found = await this.findOne({id: source.id})
-    // console.log(found)
     if(!found || !found._doc){
-      console.log("inside conditional")
       let image = await getImageURL(source.url)
       found = await this.create(source)
       found.img = image
@@ -27,11 +25,12 @@ class SourceClass {
     delete source["category"]
     let foundSource = await Source.findOrCreate(source)
 
-
-    cat.sources.push(foundSource._id);
-    await cat.save()
-    foundSource.category = cat
-    await foundSource.save()
+    if(!foundSource.category){
+      foundSource.category = cat._id
+      await foundSource.save()
+      cat.sources.push(foundSource._id);
+      await cat.save()
+    }
 
     return foundSource
   }
