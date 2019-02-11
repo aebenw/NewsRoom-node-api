@@ -11,10 +11,11 @@ import { typeDefs, resolvers } from './graphql'
 import NewsAPI from './graphql/dataSources/newsAPI'
 
 
-// const routes = require('./routes/routes');
+const routes = require('./routes/routes');
 
 const app = express();
 app.use(cors());
+routes(app);
 const server = new ApolloServer({
     typeDefs,
     resolvers,
@@ -25,7 +26,6 @@ const server = new ApolloServer({
 
 server.applyMiddleware({app})
 
-// routes(app);
 
 
 app.listen(3001, () => console.log(`started up on localhost:3001${server.graphqlPath}`));

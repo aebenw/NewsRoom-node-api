@@ -16,7 +16,6 @@ module.exports = {
             "never"
         ],
         "array-element-newline": "error",
-        "arrow-body-style": "error",
         "arrow-parens": "off",
         "arrow-spacing": [
             "error",
@@ -203,7 +202,6 @@ module.exports = {
         "operator-linebreak": "error",
         "padded-blocks": "off",
         "padding-line-between-statements": "error",
-        "prefer-arrow-callback": "error",
         "prefer-const": "off",
         "prefer-destructuring": "off",
         "prefer-numeric-literals": "error",
