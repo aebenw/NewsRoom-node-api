@@ -30,6 +30,7 @@
     "mongoose": "^5.4.10",
     "newsapi": "^2.4.0",
     "nodemon": "^1.18.9",
+    "redis": "^2.8.0",
     "validator": "^10.11.0"
   },
   "devDependencies": {
