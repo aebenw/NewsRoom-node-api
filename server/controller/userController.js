@@ -24,6 +24,7 @@ exports.login = async (req, res) => {
     if(user){
       if(user.password === req.body.password){
         req.session.user = user
+        console.log("inside login", req.session)
         res.send(user)
       } else res.send({errors: ['password is incorrect']})
     } else res.send({errors: ['email does not exist']})

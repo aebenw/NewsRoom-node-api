@@ -6,6 +6,8 @@ import { asyncMapping } from './connectingFuncs'
 
 
 export const callSources = async (req, res) => {
+    console.log(req.session)
+
   let response = await newsapi.v2.sources({
     language: 'en',
     country: 'us',
