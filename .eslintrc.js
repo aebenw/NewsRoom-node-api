@@ -15,7 +15,6 @@ module.exports = {
             "error",
             "never"
         ],
-        "array-element-newline": "error",
         "arrow-parens": "off",
         "arrow-spacing": [
             "error",
@@ -67,7 +66,6 @@ module.exports = {
         "function-paren-newline": "error",
         "generator-star-spacing": "error",
         "global-require": "off",
-        "guard-for-in": "error",
         "handle-callback-err": "off",
         "id-blacklist": "error",
         "id-length": "off",

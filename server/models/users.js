@@ -10,15 +10,15 @@ const UserSchema = new Schema({
     type: String,
     require: true,
     unique: true,
-    // validate: {
-    //   vaidator: validator.isEmail,
-    //   message: `{VALUE} is not a valid email`
-    // }
+    validate: {
+      validator: validator.isEmail,
+      message: `{VALUE} is not a valid email`
+    }
   },
   password: {
     type: String,
     required: true,
-    minlength: 5
+    minlength: [5, 'password length too short']
   },
   // tokens: [{
   //   access: {

@@ -6,7 +6,15 @@ exports.createUser  = async (req, res) => {
     req.session.user = user
     res.status(200).send(user);
   } catch (e) {
-    res.send(e)
+// ************* Not super flushed out, need to return back to.
+    let errors = []
+    if(e.errmsg)errors.push("Email already taken")
+    if(e.errors){
+      for(let key in e.errors){
+        if(e.errors[key].message) errors.push(e.errors[key].message)
+      }
+    }
+    res.send({errors})
   }
 };
 
@@ -16,19 +24,16 @@ exports.login = async (req, res) => {
     if(user){
       if(user.password === req.body.password){
         req.session.user = user
-        console.log(req.session, req.cookies)
         res.send(user)
-      } else res.send({error: 'password is incorrect'})
-    } else res.send({error: 'email does not exist'})
+      } else res.send({errors: ['password is incorrect']})
+    } else res.send({errors: ['email does not exist']})
   } catch (e) {
     res.send(e)
   }
 };
 
 exports.favArticle = async (req, res) => {
-  console.log(req.body)
   let user = await User.findById(req.body.userID)
-  console.log(user)
   let article = await Article.findById(req.body.articleID)
   user.articles.push(article)
   article.users.push(user)
