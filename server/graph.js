@@ -1,21 +1,14 @@
 // Just working with Apollo and testing it routes
 // Hope to build a server and choose between normal API or Apollo
 
-require('./config/config')
 const express = require('express');
 // const { mongoose } = require('./db/mongoose');
-// const bodyParser = require('body-parser');
-const cors = require('cors');
-import { ApolloServer } from 'apollo-server-express'
+
+import { ApolloServer } from 'apollo-server'
 import { typeDefs, resolvers } from './graphql'
 import NewsAPI from './graphql/dataSources/newsAPI'
 
 
-const routes = require('./routes/routes');
-
-const app = express();
-app.use(cors());
-routes(app);
 const server = new ApolloServer({
     typeDefs,
     resolvers,
@@ -24,10 +17,9 @@ const server = new ApolloServer({
     })
   })
 
-server.applyMiddleware({app})
+server.listen().then(({url}) => {
+  console.log(`Apollo Running on ${url}`)
+})
 
 
-
-app.listen(3001, () => console.log(`started up on localhost:3001${server.graphqlPath}`));
-
-module.exports = {app};
+module.exports = server;

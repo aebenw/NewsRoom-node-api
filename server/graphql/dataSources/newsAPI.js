@@ -14,13 +14,27 @@ class NewsAPI extends RESTDataSource {
     return response.sources.map(source => this.sourceReducer(source))
   }
 
+  async getLatestArticles(){
+    console.log("inside function")
+    let response = await this.get(`top-headlines?language=en&country=us&category=general&pageSize=5&` + `${this.key}`)
+    console.log(response)
+    return response.articles.map(article => this.articleReducer(article))
+  }
+
   sourceReducer(source){
-    const {id, name, description, url, category} = source
+    const {id, name, description, url} = source
     return {
       givenID: id,
       name,
       description,
       url
+    }
+  }
+
+  articleReducer(article){
+    const { title } = article
+    return {
+      title
     }
   }
 
