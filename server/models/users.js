@@ -1,5 +1,6 @@
 import mongoose, { Schema } from 'mongoose';
 import validator from 'validator'
+import {UserClass} from './classes'
 const { Types: { ObjectId } } = Schema
 
 const UserSchema = new Schema({
@@ -20,16 +21,16 @@ const UserSchema = new Schema({
     required: true,
     minlength: [5, 'password length too short']
   },
-  // tokens: [{
-  //   access: {
-  //     type: String,
-  //     required: true
-  //   },
-  //   token: {
-  //     type: String,
-  //     required: true
-  //   }
-  // }],
+  tokens: [{
+    access: {
+      type: String,
+      required: true
+    },
+    token: {
+      type: String,
+      required: true
+    }
+  }],
   articles: [{
     type: ObjectId,
     ref: 'Articles'
@@ -43,6 +44,9 @@ const UserSchema = new Schema({
     ref: 'Comment'
   }]
 });
+
+
+UserSchema.loadClass(UserClass)
 
 const User = mongoose.model('User', UserSchema);
 

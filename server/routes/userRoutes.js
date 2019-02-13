@@ -9,6 +9,9 @@ const userPath = express();
   userPath.route('/login')
     .post(user.login);
 
+  userPath.route('/session')
+    .get(user.retrieveSession)
+
   userPath.route('/favArticle')
     .post(user.favArticle);
 

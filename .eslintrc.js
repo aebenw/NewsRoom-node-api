@@ -31,7 +31,6 @@ module.exports = {
         "brace-style": "error",
         "camelcase": "error",
         "capitalized-comments": "off",
-        "class-methods-use-this": "error",
         "comma-dangle": "off",
         "comma-spacing": [
             "error",
@@ -106,7 +105,6 @@ module.exports = {
         "no-caller": "error",
         "no-catch-shadow": "error",
         "no-confusing-arrow": "error",
-        "no-continue": "error",
         "no-console": "warn",
         "no-div-regex": "error",
         "no-duplicate-imports": "error",

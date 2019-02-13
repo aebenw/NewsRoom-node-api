@@ -11,7 +11,8 @@ import { gql } from 'apollo-server-express'
 const typeDefs = gql`
   type Query {
     hello: String
-    sources: [Source]
+    sources: [Source],
+    latestArticles: [Article]
   }
 
   type User {
