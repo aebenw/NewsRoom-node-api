@@ -15,7 +15,7 @@ const CommentSchema = new Schema({
   }
 });
 
-  //*****TRYING TO WORK ON MIDDLEWARE FOR AUTOMATIC POPULATION***//
+  //*****WORK ON MIDDLEWARE FOR AUTOMATIC POPULATION***//
 // CommentSchema.post('find', async (doc) => {
 //   console.log(doc, "________________")
 //   await doc.populate({path: 'user', select: 'name'})

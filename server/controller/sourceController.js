@@ -13,21 +13,17 @@ export const callSources = async (req, res) => {
     country: 'us',
     category: "general"
   })
-  // console.log(req, res)
-  // debugger
+
   let answer = await asyncMapping(response.sources, Source.findOrCreateWithCat)
 
   let cachedSources = JSON.stringify(answer)
   client.set('sources', cachedSources)
 
   res.status(200).send(answer)
-
-
 };
 
 export const showSource = (req, res) => {
   const id = req.params.id;
-  // console.log(req.session.key)
   let source = Source.findById(id)
   source
   .populate({path: 'articles', select: "author title description url urlToImage content"})
@@ -40,8 +36,6 @@ export const showSource = (req, res) => {
 export const searchSources = async (req, res) => {
   let sources = await Source.find({id: req.body.source})
   client.hgetall(req.body.source, (err, obj) => {
-    console.log(obj)
     res.status(200).send(obj)
-
   })
 }

@@ -28,6 +28,7 @@ class ArticleClass {
   //     this.source = source;
   //     this.save().then(null, e => e)
   // }
+
   setSource({_id, name}){
       this.source = {_id, name};
       this.save().then(null, e => e)

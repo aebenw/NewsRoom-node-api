@@ -5,11 +5,10 @@ class UserClass {
 
 
   generateAuthToken(){
-    var access = 'auth';
-    var token = jwt.sign({_id: this._id.toHexString(), access}, 'abc123').toString();
+    const access = 'auth';
+    const token = jwt.sign({_id: this._id.toHexString(), access}, 'abc123').toString();
 
     this.tokens.push({access, token});
-    console.log(this)
 
     return this.save().then(() => {
       return token;
@@ -22,6 +21,7 @@ class UserClass {
     try {
       decoded = jwt.verify(token, 'abc123');
     } catch (e) {
+
       return e;
     }
 

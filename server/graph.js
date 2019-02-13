@@ -1,4 +1,4 @@
-// Just working with Apollo and testing it routes
+// Testing out Apollo, seeing if there's a good integration for it
 // Hope to build a server and choose between normal API or Apollo
 
 const express = require('express');

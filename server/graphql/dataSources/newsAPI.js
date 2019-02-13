@@ -10,14 +10,11 @@ class NewsAPI extends RESTDataSource {
 
   async getSources(){
     let response = await this.get(`sources?${this.key}`)
-    console.log(response.sources[0])
     return response.sources.map(source => this.sourceReducer(source))
   }
 
   async getLatestArticles(){
-    console.log("inside function")
     let response = await this.get(`top-headlines?language=en&country=us&category=general&pageSize=5&` + `${this.key}`)
-    console.log(response)
     return response.articles.map(article => this.articleReducer(article))
   }
 
