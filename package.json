@@ -7,7 +7,8 @@
     "test": "export NODE_ENV=test && nodemon --exec 'mocha */tests/**.test.js --require @babel/polyfill --require @babel/register'",
     "graph": "export NODE_ENV=graph && nodemon --exec babel-node server/graph.js ",
     "start": "nodemon --exec babel-node server/server.js ",
-    "debug": "babel-node --inspect server/server.js"
+    "debug": "babel-node --inspect server/server.js",
+    "repl": "babel-node server/repl.js"
   },
   "author": "",
   "license": "ISC",

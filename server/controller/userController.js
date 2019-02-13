@@ -1,5 +1,6 @@
 import { User, Article, Source } from '../models';
 import { passport } from '../server'
+import { asyncMapping } from './connectingFuncs'
 
 export const createUser  = async (req, res) => {
   try {
@@ -39,7 +40,7 @@ export const favArticle = async (req, res) => {
   article.users.push(user)
   user.save().then(null, (e) => e)
   article.save().then(null, (e) => e);
-  res.status(200).send({message: `${user.name} likes ${article.title}`})
+  res.status(200).send({success: true})
 };
 
 export const followSource = async (req, res) => {
@@ -51,6 +52,18 @@ export const followSource = async (req, res) => {
   source.save().then(null, (e) => e);
   res.status(200).send(source)
 };
+
+export const savedArticles = async (req, res) => {
+  const { articles } = req.body;
+
+  let foundArticles = await Promise.all(articles.map(async (article) => {
+     let found = await Article.findById(article)
+     return found
+   }))
+   console.log(foundArticles)
+
+  res.status(200).send(JSON.stringify(foundArticles, undefined, 2));
+}
 
 export const retrieveSession = (req, res) => {
   res.status(200).send(req.user)
