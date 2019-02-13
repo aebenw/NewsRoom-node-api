@@ -1,13 +1,12 @@
 require('./config/config')
 const express = require('express');
-const { mongoose } = require('./db/mongoose');
+const mongoose  = require('./db/mongoose');
 const bodyParser = require('body-parser');
 import server from './graph'
 import session from 'express-session';
 const RedisStore = require('connect-redis')(session);
 import cors from 'cors';
 import passport from 'passport'
-import { ApolloServer } from 'apollo-server-express'
 import redis from 'redis'
 
 
@@ -27,7 +26,7 @@ app.use(cors({
   "methods": "GET,HEAD,PUT,PATCH,POST,DELETE",
   "preflightContinue": true,
   "optionsSuccessStatus": 204,
-  credentials: true
+    credentials: true
 }));
 
 app.use(session({

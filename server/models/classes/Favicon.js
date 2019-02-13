@@ -6,7 +6,6 @@ async function getImageURL (url){
   let image = await axios.get(`${baseURL}icon?url=${url}&size=50..150..300`)
 
   return image.request.res.responseUrl
-  // return image
 }
 
 export {

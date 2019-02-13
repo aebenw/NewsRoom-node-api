@@ -1,6 +1,7 @@
 const express = require('express');
 const user = require('../controller/userController');
 const userPath = express();
+import { authenticate } from '../middleware'
 
 
   userPath.route('/')
@@ -10,7 +11,7 @@ const userPath = express();
     .post(user.login);
 
   userPath.route('/session')
-    .get(user.retrieveSession)
+    .post(authenticate, user.retrieveSession)
 
   userPath.route('/favArticle')
     .post(user.favArticle);

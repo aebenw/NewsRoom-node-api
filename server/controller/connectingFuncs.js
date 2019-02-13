@@ -4,7 +4,7 @@ function populateRelationships(source, article){
   article.source(source);
 }
 
-//in sequence
+///       in sequence
 async function asyncMapping (objects, cb){
   let res = [];
   for(const object of objects){
@@ -13,7 +13,8 @@ async function asyncMapping (objects, cb){
   }
   return res
 }
-//in parrallel
+//////     in parrallel
+
 // async function asyncMapping (objects, callback){
 //   return await Promise.all(objects.map(async(obj) => {
 //     debugger
@@ -24,7 +25,7 @@ async function asyncMapping (objects, cb){
 
 
 
-module.exports = {
+export {
   populateRelationships,
   asyncMapping
 };

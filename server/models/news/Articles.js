@@ -17,5 +17,4 @@ const ArticleSchema = new Schema({
 ArticleSchema.loadClass(ArticleClass)
 const Article = mongoose.model('Article', ArticleSchema);
 
-
 export default Article;

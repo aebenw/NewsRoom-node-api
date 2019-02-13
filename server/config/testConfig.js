@@ -1,12 +1,11 @@
-const request = require('supertest');
-const {app} = require('../server');
+import request from 'supertest';
+import {app} from '../server';
 
 
 import {
   Source,
   User,
-  Article,
-  Comment
+  Article
 } from '../models'
 
 

@@ -5,8 +5,7 @@ export const createUser  = async (req, res) => {
   try {
     const user = await User.create(req.body);
     let token = await user.generateAuthToken()
-    console.log(token)
-    res.status(200).header("x-auth", token).send(user);
+    res.status(200).send({user, token});
   } catch (e) {
 // ************* Not super flushed out, need to return back to.
     let errors = []
@@ -25,13 +24,7 @@ export const login = async (req, res) => {
     let user = await User.findOne({email: req.body.email})
     if(user){
       if(user.password === req.body.password){
-        // req.session.user = user
-        // req.session.save()
-        req.login(user._id, (err, hash) => {
-          res.send({user, session: req.session.id})
-        })
-        console.log("inside login", req.session.id)
-        console.log("inside login", req.session)
+        res.send({user, token: user.tokens[0].token})
       } else res.send({errors: ['password is incorrect']})
     } else res.send({errors: ['email does not exist']})
   } catch (e) {
@@ -60,8 +53,7 @@ export const followSource = async (req, res) => {
 };
 
 export const retrieveSession = (req, res) => {
-  debugger
-  res.send(200)
+  res.status(200).send(req.user)
 }
 
 passport.serializeUser(function(userId, done) {
