@@ -1,5 +1,4 @@
 import { RESTDataSource } from 'apollo-datasource-rest';
-import { API } from '../../constants/api'
 
 class NewsAPI extends RESTDataSource {
   constructor(){
