@@ -10,7 +10,7 @@
     "start": "npm run build && node ./build/server.js",
     "test": "export NODE_ENV=test && nodemon --exec 'mocha */tests/**.test.js --require @babel/polyfill --require @babel/register'",
     "graph": "export NODE_ENV=graph && nodemon --exec babel-node server/graph.js ",
-    "server": "nodemon --exec babel-node server/server.js ",
+    "server": "nodemon --exec babel server/server.js ",
     "debug": "babel-node --inspect server/server.js",
     "repl": "babel-node server/repl.js"
   },
@@ -64,6 +64,6 @@
     "supertest": "^3.4.2"
   },
   "engines": {
-  "node": "10.x"
-}
+  "node": "11.x"
+  }
 }
