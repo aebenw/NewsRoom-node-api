@@ -190,7 +190,6 @@ module.exports = {
         "nonblock-statement-body-position": "error",
         "object-curly-newline": "error",
         "object-curly-spacing": "off",
-        "object-shorthand": "error",
         "one-var": "off",
         "one-var-declaration-per-line": "error",
         "operator-assignment": "error",
