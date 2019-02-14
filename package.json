@@ -4,9 +4,13 @@
   "description": "",
   "main": "server/server.js",
   "scripts": {
+    "clean": "rm -rf build && mkdir build",
+    "build-babel": "babel -d ./build ./server -s",
+    "build": "npm run clean && npm run build-babel",
+    "start": "npm run build && node ./build/server.js",
     "test": "export NODE_ENV=test && nodemon --exec 'mocha */tests/**.test.js --require @babel/polyfill --require @babel/register'",
     "graph": "export NODE_ENV=graph && nodemon --exec babel-node server/graph.js ",
-    "start": "node server/server.js ",
+    "server": "nodemon --exec babel-node server/server.js ",
     "debug": "babel-node --inspect server/server.js",
     "repl": "babel-node server/repl.js"
   },
@@ -58,23 +62,5 @@
     "superagent": "^4.1.0",
     "supertest": "^3.4.2",
     "webpack": "^4.29.0"
-  },
-  "babel": {
-    "presets": [
-      [
-        "@babel/preset-env",
-        {
-          "targets": {
-            "node": "current"
-          }
-        }
-      ]
-    ],
-    "plugins": [
-      "@babel/plugin-proposal-object-rest-spread"
-    ]
-  },
-  "engines": {
-    "node": "11.x"
   }
 }

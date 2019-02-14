@@ -45,7 +45,7 @@ app.use(bodyParser.json())
 
 routes(app);
 
-app.listen(PORT || 3000, () => console.log("started up on port 3001"));
+app.listen(PORT || 3001, () => console.log("started up on port 3001"));
 
 export {
   app,
