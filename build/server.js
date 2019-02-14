@@ -50,12 +50,18 @@ exports.app = app;
 const routes = require('./routes/routes');
 
 app.use(bodyParser.json());
+const allowedOrigins = ['http://localhost:3000', 'https://protected-bayou-40913.herokuapp.com'];
 app.use((0, _cors.default)({
-  "origin": "http://localhost:3000",
-  "methods": "GET,HEAD,PUT,PATCH,POST,DELETE",
-  "preflightContinue": true,
-  "optionsSuccessStatus": 204,
-  credentials: true
+  origin: function (origin, callback) {
+    if (!origin) return callback(null, true);
+
+    if (allowedOrigins.indexOf(origin) === -1) {
+      const msg = 'The CORS policy for this site does not ' + 'allow access from the specified Origin.';
+      return callback(new Error(msg), false);
+    }
+
+    return callback(null, true);
+  }
 }));
 app.use((0, _expressSession.default)({
   secret: "worldly",
