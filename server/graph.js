@@ -11,7 +11,7 @@ const server = new ApolloServer({
     resolvers,
     dataSources: () => ({
       newsAPI: new NewsAPI()
-    })
+    }) 
   })
 
 server.listen().then(({url}) => {

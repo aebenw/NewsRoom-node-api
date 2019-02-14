@@ -1,11 +1,11 @@
 const express = require('express');
 const source = require('../controller/sourceController');
 const sourcePath = express();
-import { sourceCache } from '../redis'
+// import { sourceCache } from '../redis'
 
 
   sourcePath.route('/')
-    .get(sourceCache, source.callSources);
+    .get(source.callSources);
 
   sourcePath.route('/:id')
     .get(source.showSource);
