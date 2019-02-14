@@ -7,8 +7,6 @@ exports.default = void 0;
 
 var _apolloDatasourceRest = require("apollo-datasource-rest");
 
-var _api = require("../../constants/api");
-
 class NewsAPI extends _apolloDatasourceRest.RESTDataSource {
   constructor() {
     super();

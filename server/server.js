@@ -25,13 +25,7 @@ const app = express();
 const routes = require('./routes/routes');
 
 app.use(bodyParser.json());
-app.use(cors({
-  "origin": "http://localhost:3000",
-  "methods": "GET,HEAD,PUT,PATCH,POST,DELETE",
-  "preflightContinue": true,
-  "optionsSuccessStatus": 204,
-    credentials: true
-}));
+app.use(cors());
 
 app.use(session({
   secret: "worldly",

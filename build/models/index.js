@@ -16,7 +16,7 @@ Object.defineProperty(exports, "Comment", {
 Object.defineProperty(exports, "User", {
   enumerable: true,
   get: function () {
-    return _Users.default;
+    return _users.default;
   }
 });
 
@@ -35,7 +35,7 @@ Object.keys(_news).forEach(function (key) {
 
 var _Comments = _interopRequireDefault(require("./Comments"));
 
-var _Users = _interopRequireDefault(require("./Users"));
+var _users = _interopRequireDefault(require("./users"));
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 //# sourceMappingURL=index.js.map
