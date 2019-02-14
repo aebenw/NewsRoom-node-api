@@ -5,7 +5,7 @@ class NewsAPI extends RESTDataSource {
   constructor(){
     super();
     this.baseURL = "https://newsapi.org/v2/"
-    this.key = `apiKey=${API}`
+    this.key = `apiKey=${process.env.NEWS_API}`
   }
 
   async getSources(){

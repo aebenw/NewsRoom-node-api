@@ -8,6 +8,9 @@ const RedisStore = require('connect-redis')(session);
 import cors from 'cors';
 import passport from 'passport'
 import redis from 'redis'
+import https from 'https'
+
+// Promise.new(https.get("https://en.wikipedia.org/w/api.php?action=parse&section=0&prop=text&format=json&page=pizza")
 
 
 //Creat Redis Client

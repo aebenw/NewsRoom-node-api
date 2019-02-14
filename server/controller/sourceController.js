@@ -1,6 +1,5 @@
 import NewsAPI from 'newsapi';
-const newsapi = new NewsAPI(API);
-import { API } from '../constants/api';
+const newsapi = new NewsAPI(process.env.NEWS_API);
 import { Source }  from '../models';
 import { asyncMapping } from './connectingFuncs'
 import { client } from '../server'
@@ -16,10 +15,11 @@ export const callSources = async (req, res) => {
 
   let answer = await asyncMapping(response.sources, Source.findOrCreateWithCat)
 
-  let cachedSources = JSON.stringify(answer)
-  client.set('sources', cachedSources)
-
   res.status(200).send(answer)
+
+  // Redis Caching not ready for production
+  // let cachedSources = JSON.stringify(answer)
+  // client.set('sources', cachedSources)
 };
 
 export const showSource = (req, res) => {
