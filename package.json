@@ -68,20 +68,5 @@
   },
   "engines": {
     "node": "11.x"
-  },
-  "babel": {
-    "presets": [
-      [
-        "@babel/preset-env",
-        {
-          "targets": {
-            "node": "current"
-          }
-        }
-      ]
-    ],
-    "plugins": [
-      "@babel/plugin-proposal-object-rest-spread"
-    ]
   }
 }
