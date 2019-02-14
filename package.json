@@ -73,5 +73,8 @@
     "plugins": [
       "@babel/plugin-proposal-object-rest-spread"
     ]
+  },
+  "engines": {
+    "node": "11.x"
   }
 }

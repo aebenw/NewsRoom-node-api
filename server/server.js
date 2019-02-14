@@ -9,6 +9,7 @@ import cors from 'cors';
 import passport from 'passport'
 import redis from 'redis'
 import https from 'https'
+const PORT = process.env.PORT
 
 // Promise.new(https.get("https://en.wikipedia.org/w/api.php?action=parse&section=0&prop=text&format=json&page=pizza")
 
@@ -44,8 +45,7 @@ app.use(bodyParser.json())
 
 routes(app);
 
-
-app.listen(3001, () => console.log("started up on port 3001"));
+app.listen(PORT || 3000, () => console.log("started up on port 3001"));
 
 export {
   app,
