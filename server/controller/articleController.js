@@ -1,6 +1,6 @@
 import NewsAPI from 'newsapi';
 const newsapi = new NewsAPI(process.env.NEWS_API);
-import { client } from '../server'
+// import { client } from '../server'
 import { Article } from '../models'
 import { asyncMapping }  from './connectingFuncs'
 
