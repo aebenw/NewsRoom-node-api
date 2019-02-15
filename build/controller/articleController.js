@@ -7,15 +7,13 @@ exports.showArticle = exports.callArticles = void 0;
 
 var _newsapi = _interopRequireDefault(require("newsapi"));
 
-var _server = require("../server");
-
 var _models = require("../models");
 
 var _connectingFuncs = require("./connectingFuncs");
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
-const newsapi = new _newsapi.default(process.env.NEWS_API);
+const newsapi = new _newsapi.default(process.env.NEWS_API); // import { client } from '../server'
 
 const callArticles = async (req, res) => {
   let articles = await newsapi.v2.topHeadlines({

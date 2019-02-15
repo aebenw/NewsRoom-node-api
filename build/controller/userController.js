@@ -3,14 +3,13 @@
 Object.defineProperty(exports, "__esModule", {
   value: true
 });
-exports.retrieveSession = exports.savedArticles = exports.followSource = exports.favArticle = exports.login = exports.createUser = void 0;
+exports.savedArticles = exports.followSource = exports.favArticle = exports.login = exports.createUser = void 0;
 
 var _models = require("../models");
 
-var _server = require("../server");
-
 var _connectingFuncs = require("./connectingFuncs");
 
+// import { passport } from '../server'
 const createUser = async (req, res) => {
   try {
     const user = await _models.User.create(req.body);
@@ -99,21 +98,18 @@ const savedArticles = async (req, res) => {
   }));
   console.log(foundArticles);
   res.status(200).send(JSON.stringify(foundArticles, undefined, 2));
-};
+}; // export const retrieveSession = (req, res) => {
+//   res.status(200).send(req.user)
+// }
+//
+// passport.serializeUser(function(userId, done) {
+//   done(null, userId);
+// });
+//
+// passport.deserializeUser(function(userId, done) {
+//     done(null, userId);
+// });
+
 
 exports.savedArticles = savedArticles;
-
-const retrieveSession = (req, res) => {
-  res.status(200).send(req.user);
-};
-
-exports.retrieveSession = retrieveSession;
-
-_server.passport.serializeUser(function (userId, done) {
-  done(null, userId);
-});
-
-_server.passport.deserializeUser(function (userId, done) {
-  done(null, userId);
-});
 //# sourceMappingURL=userController.js.map

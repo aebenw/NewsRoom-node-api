@@ -24,7 +24,9 @@ const callSources = async (req, res) => {
     category: "general"
   });
   let answer = await (0, _connectingFuncs.asyncMapping)(response.sources, _models.Source.findOrCreateWithCat);
-  res.status(200).send(answer); // Redis Caching not ready for production
+  res.status(200).send(answer); // Redis Caching for news sources
+  // a lot of work is done to fetch their sources
+  // and to get their pictures
   // let cachedSources = JSON.stringify(answer)
   // client.set('sources', cachedSources)
 };

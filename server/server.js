@@ -8,9 +8,9 @@ const PORT = process.env.PORT
 // ******** FEATURES NOT READY FOR PRODUCTION
 // import server from './graph'
 // import redis from 'redis'
-// import session from 'express-session';
-// const RedisStore = require('connect-redis')(session);
-// import passport from 'passport'
+import session from 'express-session';
+const RedisStore = require('connect-redis')(session);
+import passport from 'passport'
 
 
 //Create Redis Client
@@ -45,8 +45,8 @@ app.use(cors({
 //   resave: true,
 //   saveUninitialized: false
 // }))
-// app.use(passport.initialize())
-// app.use(passport.session())
+app.use(passport.initialize())
+app.use(passport.session())
 
 app.use(bodyParser.json())
 
