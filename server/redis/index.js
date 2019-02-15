@@ -1,7 +1,7 @@
 import {client} from '../server'
 
 
-export function topStoryCache(req, res, next){
+// export function topStoryCache(req, res, next){
   // client.get("topStories", (err, data) => {
   //   if(err) throw err;
   //   // console.log(data, "in cache function")
@@ -9,19 +9,17 @@ export function topStoryCache(req, res, next){
   //     // console.log(data)
   //     res.status(200).send(data)
   //   } else {
-      next()
+      // next()
   //   }
   // })
-}
+// }
 export function sourceCache(req, res, next){
   client.get("sources", (err, data) => {
-    if(err) throw err;
-    if(data){
-      res.status(200).send(data)
-      return
-    }
+    if(err || !data){
       next()
-
+    } else if(data){
+      res.status(200).send(data)
+    }
   })
 }
 

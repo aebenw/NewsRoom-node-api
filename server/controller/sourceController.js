@@ -17,7 +17,11 @@ export const callSources = async (req, res) => {
 
   res.status(200).send(answer)
 
-  // Redis Caching not ready for production
+  // Redis Caching for news sources
+  // a lot of work is done to fetch their sources
+  // and to get their pictures
+
+
   // let cachedSources = JSON.stringify(answer)
   // client.set('sources', cachedSources)
 };
