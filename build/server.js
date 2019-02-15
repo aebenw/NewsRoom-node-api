@@ -3,6 +3,12 @@
 Object.defineProperty(exports, "__esModule", {
   value: true
 });
+Object.defineProperty(exports, "passport", {
+  enumerable: true,
+  get: function () {
+    return _passport.default;
+  }
+});
 exports.app = void 0;
 
 var _cors = _interopRequireDefault(require("cors"));

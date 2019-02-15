@@ -22,6 +22,10 @@ The api uses Node.js with Express and mongoDB.
 
 ### For Frontend
 
+*Frontend needs a lot of touching up, this project was more intended to garner experience working with Node more so than with React*
+
 * CSS clean up needs to be done.
+
+* Formatting of information
 
 * Working on a search function for sources.

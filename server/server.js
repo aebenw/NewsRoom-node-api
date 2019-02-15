@@ -56,5 +56,6 @@ app.listen(PORT || 3001, () => console.log("started up on port 3001"));
 
 export {
   app,
+  passport
   // client
 };

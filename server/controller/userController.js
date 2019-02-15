@@ -1,5 +1,5 @@
 import { User, Article, Source } from '../models';
-// import { passport } from '../server'
+import { passport } from '../server'
 import { asyncMapping } from './connectingFuncs'
 
 export const createUser  = async (req, res) => {
@@ -60,19 +60,18 @@ export const savedArticles = async (req, res) => {
      let found = await Article.findById(article)
      return found
    }))
-   console.log(foundArticles)
 
   res.status(200).send(JSON.stringify(foundArticles, undefined, 2));
 }
 
-// export const retrieveSession = (req, res) => {
-//   res.status(200).send(req.user)
-// }
-//
-// passport.serializeUser(function(userId, done) {
-//   done(null, userId);
-// });
-//
-// passport.deserializeUser(function(userId, done) {
-//     done(null, userId);
-// });
+export const retrieveSession = (req, res) => {
+  res.status(200).send(req.user)
+}
+
+passport.serializeUser(function(userId, done) {
+  done(null, userId);
+});
+
+passport.deserializeUser(function(userId, done) {
+    done(null, userId);
+});
