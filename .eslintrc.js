@@ -127,7 +127,6 @@ module.exports = {
         "no-labels": "error",
         "no-lone-blocks": "error",
         "no-lonely-if": "error",
-        "no-loop-func": "error",
         "no-magic-numbers": "off",
         "no-misleading-character-class": "error",
         "no-mixed-operators": "error",

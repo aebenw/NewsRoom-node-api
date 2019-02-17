@@ -7,13 +7,13 @@ import { authenticate } from '../middleware'
   userPath.route('/')
     .post(user.createUser);
 
-    userPath.route(`/articles`)
+  userPath.route(`/articles`)
     .post(user.savedArticles);
 
-    userPath.route('/favArticle')
+  userPath.route('/favArticle')
     .post(user.favArticle);
 
-    userPath.route('/followSource')
+  userPath.route('/followSource')
     .post(user.followSource);
 
   userPath.route('/login')

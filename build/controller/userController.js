@@ -46,7 +46,6 @@ const login = async (req, res) => {
 
     if (user) {
       if (user.password === req.body.password) {
-        console.log(user.tokens[0]);
         res.send({
           user,
           token: user.tokens[0].token
@@ -98,7 +97,6 @@ const savedArticles = async (req, res) => {
     let found = await _models.Article.findById(article);
     return found;
   }));
-  console.log(foundArticles);
   res.status(200).send(JSON.stringify(foundArticles, undefined, 2));
 };
 

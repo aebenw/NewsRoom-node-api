@@ -2,7 +2,7 @@ import NewsAPI from 'newsapi';
 const newsapi = new NewsAPI(process.env.NEWS_API);
 import { Source }  from '../models';
 import { asyncMapping } from './connectingFuncs'
-import { client } from '../server'
+import { client } from '../config/config'
 
 
 export const callSources = async (req, res) => {
@@ -22,8 +22,8 @@ export const callSources = async (req, res) => {
   // and to get their pictures
 
 
-  // let cachedSources = JSON.stringify(answer)
-  // client.set('sources', cachedSources)
+  let cachedSources = JSON.stringify(answer)
+  client.set('sources', cachedSources)
 };
 
 export const showSource = (req, res) => {
@@ -32,6 +32,7 @@ export const showSource = (req, res) => {
   source
   .populate({path: 'articles', select: "author title description url urlToImage content"})
   .exec((err, posts) => {
+    posts.articles.reverse()
     res.status(200).send(JSON.stringify(posts, undefined, 2));
   });
 }

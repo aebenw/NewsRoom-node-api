@@ -27,17 +27,10 @@ const mongoose = require('./db/mongoose');
 
 const bodyParser = require('body-parser');
 
-const PORT = process.env.PORT; // ******** FEATURES NOT READY FOR PRODUCTION
+// ******** FEATURES NOT READY FOR PRODUCTION
 // import server from './graph'
-// import redis from 'redis'
-
-const RedisStore = require('connect-redis')(_expressSession.default);
-
-//Create Redis Client
-// let client = redis.createClient();
-// client.on('connect', () => {
-//   console.log('connected to Redis')
-// })
+// const RedisStore = require('connect-redis')(session);
+const PORT = process.env.PORT;
 const app = express();
 exports.app = app;
 
@@ -56,16 +49,16 @@ app.use((0, _cors.default)({
 
     return callback(null, true);
   }
-})); // app.use(session({
+}));
+app.use(_passport.default.initialize());
+app.use(_passport.default.session());
+app.use(bodyParser.json());
+routes(app);
+app.listen(PORT || 3001, () => console.log(`started up on ${PORT}`)); // ---------- WORK WITH CACHED SESSIONS FOR USERS
+// app.use(session({
 //   secret: "worldly",
 //   store: new RedisStore({ host: 'localhost', port: 6379, client, ttl :  260}),
 //   resave: true,
 //   saveUninitialized: false
 // }))
-
-app.use(_passport.default.initialize());
-app.use(_passport.default.session());
-app.use(bodyParser.json());
-routes(app);
-app.listen(PORT || 3001, () => console.log("started up on port 3001"));
 //# sourceMappingURL=server.js.map

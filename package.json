@@ -11,8 +11,8 @@
     "test": "export NODE_ENV=test && nodemon --exec 'mocha */tests/**.test.js --require @babel/polyfill --require @babel/register'",
     "graph": "export NODE_ENV=graph && nodemon --exec babel-node server/graph.js ",
     "build-server": "babel server/server.js -d dist",
-    "server": "nodemon --exec babel-node server/server.js",
-    "debug": "babel 'inspect server/server.js'",
+    "server": "nodemon --exec babel-node server/server.js ",
+    "debug": "babel-node --inspect-brk server/server.js",
     "repl": "babel-node server/repl.js"
   },
   "author": "",
