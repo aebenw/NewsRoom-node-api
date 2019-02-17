@@ -1,12 +1,13 @@
 "use strict";
 
+var _redis = require("../redis");
+
 const express = require('express');
 
 const source = require('../controller/sourceController');
 
-const sourcePath = express(); // import { sourceCache } from '../redis'
-
-sourcePath.route('/').get(source.callSources);
+const sourcePath = express();
+sourcePath.route('/').get(_redis.sourceCache, source.callSources);
 sourcePath.route('/:id').get(source.showSource);
 sourcePath.route('/search').post(source.searchSources);
 module.exports = sourcePath;

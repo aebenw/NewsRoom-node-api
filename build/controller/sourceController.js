@@ -11,7 +11,7 @@ var _models = require("../models");
 
 var _connectingFuncs = require("./connectingFuncs");
 
-var _server = require("../server");
+var _config = require("../config/config");
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
@@ -27,8 +27,10 @@ const callSources = async (req, res) => {
   res.status(200).send(answer); // Redis Caching for news sources
   // a lot of work is done to fetch their sources
   // and to get their pictures
-  // let cachedSources = JSON.stringify(answer)
-  // client.set('sources', cachedSources)
+
+  let cachedSources = JSON.stringify(answer);
+
+  _config.client.set('sources', cachedSources);
 };
 
 exports.callSources = callSources;
@@ -53,7 +55,7 @@ const searchSources = async (req, res) => {
     id: req.body.source
   });
 
-  _server.client.hgetall(req.body.source, (err, obj) => {
+  _config.client.hgetall(req.body.source, (err, obj) => {
     res.status(200).send(obj);
   });
 };
