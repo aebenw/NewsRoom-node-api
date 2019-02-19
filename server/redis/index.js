@@ -10,7 +10,6 @@ export async function topStoryCache(req, res, next){
   client.lrange("topStories", 0, 20, (err, data) => {
     if(err) throw err;
     if(data){
-      // let stringed = data.map(story => JSON.stringify(story))
       res.status(200).send(data)
     } else {
       next()
@@ -29,6 +28,7 @@ export function sourceCache(req, res, next){
 }
 
 export function stringifyAndAddToList(list, items){
+  console.log(list)
     items.map(article => {
       client.sadd('mostRecent', article.title)
       let stringed = JSON.stringify(article);

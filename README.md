@@ -29,3 +29,20 @@ The api uses Node.js with Express and mongoDB.
 * Formatting of information
 
 * Working on a search function for sources.
+
+
+{
+  "presets": [
+    [
+      "@babel/preset-env",
+      {
+        "targets": {
+          "node": "current"
+        }
+      }
+    ]
+  ],
+  "plugins": [
+    "@babel/plugin-proposal-object-rest-spread"
+  ]
+}
