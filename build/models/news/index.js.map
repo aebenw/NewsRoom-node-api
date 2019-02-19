@@ -1,1 +1,0 @@
-{"version":3,"sources":["../../../server/models/news/index.js"],"names":[],"mappings":";;;;;;;;;;;;;;;;;;;;;;;;AAAA;;AACA;;AACA","sourcesContent":["export {default as Article} from './Articles'\nexport {default as Source} from './Sources'\nexport {default as Category} from './Categories'\n"],"file":"index.js"}

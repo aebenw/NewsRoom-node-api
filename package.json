@@ -8,6 +8,7 @@
     "build-babel": "babel -d ./build ./server -s",
     "build": "npm run clean && npm run build-babel",
     "start": "npm run build && node ./build/server.js",
+    "dev": "webpack --watch",
     "test": "export NODE_ENV=test && nodemon --exec 'mocha */tests/**.test.js --require @babel/polyfill --require @babel/register'",
     "graph": "export NODE_ENV=graph && nodemon --exec babel-node server/graph.js ",
     "build-server": "babel server/server.js -d dist",
@@ -58,11 +59,13 @@
   },
   "devDependencies": {
     "chai": "^4.2.0",
+    "clean-webpack-plugin": "^1.0.1",
     "eslint": "^5.13.0",
     "eslint-plugin-mocha": "^5.2.1",
     "mocha": "^5.2.0",
     "superagent": "^4.1.0",
-    "supertest": "^3.4.2"
+    "supertest": "^3.4.2",
+    "webpack-cli": "^3.2.3"
   },
   "engines": {
     "node": "11.x"

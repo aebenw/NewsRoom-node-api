@@ -13,13 +13,13 @@ export const callArticles = async (req, res) => {
 
   let response = await asyncMapping(articles.articles, Article.findOrCreateWithSource)
   // res.status(200).send(response)
-  //
-  // // Redis Caching for top stories, not ready for production
+
+  //  Redis Caching
   response.map(article => {
     let stringed = JSON.stringify(article);
     client.lpush('topStories', stringed)
   })
-  //
+
   for(let i = 0; i < 5; i++){
     let story = response[i]._doc.title
     client.sadd('mostRecent', story)
