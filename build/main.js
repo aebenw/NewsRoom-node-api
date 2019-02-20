@@ -444,13 +444,24 @@ eval("__webpack_require__.r(__webpack_exports__);\n/* harmony export (binding) *
 /***/ }),
 
 /***/ 0:
-/*!********************************!*\
-  !*** multi ./server/server.js ***!
-  \********************************/
+/*!************************************************!*\
+  !*** multi @babel/polyfill ./server/server.js ***!
+  \************************************************/
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-eval("module.exports = __webpack_require__(/*! ./server/server.js */\"./server/server.js\");\n\n\n//# sourceURL=webpack:///multi_./server/server.js?");
+eval("__webpack_require__(/*! @babel/polyfill */\"@babel/polyfill\");\nmodule.exports = __webpack_require__(/*! ./server/server.js */\"./server/server.js\");\n\n\n//# sourceURL=webpack:///multi_@babel/polyfill_./server/server.js?");
+
+/***/ }),
+
+/***/ "@babel/polyfill":
+/*!**********************************!*\
+  !*** external "@babel/polyfill" ***!
+  \**********************************/
+/*! no static exports found */
+/***/ (function(module, exports) {
+
+eval("module.exports = require(\"@babel/polyfill\");\n\n//# sourceURL=webpack:///external_%22@babel/polyfill%22?");
 
 /***/ }),
 
