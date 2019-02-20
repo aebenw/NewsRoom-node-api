@@ -4,12 +4,9 @@ var nodeExternals = require('webpack-node-externals');
 
 module.exports = {
   mode: 'development',
-  entry: {main: ['./server/server.js']},
+  entry: {main: ['@babel/polyfill', './server/server.js']},
   plugins: [
     new CleanWebpackPlugin(['build'])
-    // new HtmlWebpackPlugin({
-    //   title: 'Output Management'
-    // })
   ],
   target: 'node',
   externals: [nodeExternals()],
@@ -19,7 +16,11 @@ module.exports = {
         test: /\.js$/,
         exclude: /node_modules/,
         use: {
-          loader: "babel-loader"
+          loader: "babel-loader",
+          options: {
+            presets: ['@babel/preset-env'],
+            plugins: ['@babel/plugin-proposal-object-rest-spread']
+          }
         }
       }
     ]
