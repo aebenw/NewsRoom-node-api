@@ -25,7 +25,6 @@ describe('comment routes', () => {
     })
 
     it('should have a user', () => {
-      // console.log(comment)
       expect(comment).to.have.property('user')
     })
   })
