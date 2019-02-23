@@ -6,7 +6,6 @@ import { client } from '../config/config'
 
 
 export const callSources = async (req, res) => {
-
   let response = await newsapi.v2.sources({
     language: 'en',
     country: 'us',
@@ -39,8 +38,6 @@ export const showSource = (req, res) => {
 
 
 export const searchSources = async (req, res) => {
-  let sources = await Source.find({id: req.body.source})
-  client.hgetall(req.body.source, (err, obj) => {
-    res.status(200).send(obj)
-  })
+  let sources = await Source.find({id: new RegExp(req.body.source)})
+  res.status(200).send(sources)
 }

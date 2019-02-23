@@ -7,10 +7,11 @@ import { sourceCache } from '../redis'
   sourcePath.route('/')
     .get(sourceCache, source.callSources);
 
-  sourcePath.route('/:id')
-    .get(source.showSource);
-
   sourcePath.route('/search')
-    .post(source.searchSources);
+  .post(source.searchSources);
+
+  sourcePath.route('/:id')
+  .get(source.showSource);
+
 
 module.exports = sourcePath;
