@@ -14,4 +14,4 @@ import { sourceCache } from '../redis'
   .get(source.showSource);
 
 
-module.exports = sourcePath;
+export default sourcePath

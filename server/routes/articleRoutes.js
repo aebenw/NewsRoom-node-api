@@ -9,4 +9,4 @@ import { topStoryCache } from '../redis'
   articlePath.route(`/:id`)
     .get(article.showArticle);
 
-module.exports = articlePath;
+export default  articlePath

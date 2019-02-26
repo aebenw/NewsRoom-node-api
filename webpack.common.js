@@ -4,6 +4,7 @@ var nodeExternals = require('webpack-node-externals');
 
 module.exports = {
   entry: {main: ['@babel/polyfill', './server/server.js']},
+  devtool: 'inline-source-map',
   plugins: [
     new CleanWebpackPlugin(['build'])
   ],

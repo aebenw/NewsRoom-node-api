@@ -8,4 +8,4 @@ const commentPath = express();
     .get(comment.showComment);
 
 
-module.exports = commentPath;
+export default commentPath

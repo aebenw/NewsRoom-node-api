@@ -23,4 +23,4 @@ import { authenticate } from '../middleware'
     .post(authenticate, user.retrieveSession)
 
 
-module.exports = userPath;
+export default userPath

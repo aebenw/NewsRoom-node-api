@@ -8,7 +8,7 @@
     "build-babel": "babel -d ./build ./server -s",
     "build": "npm run clean && npm run build-babel",
     "start": "npm run build && node ./build/server.js",
-    "dev": "webpack-dev-server --open --config webpack.dev.js",
+    "dev": "webpack --config webpack.production.js",
     "test": "export NODE_ENV=test && nodemon --exec 'mocha */tests/**.test.js --require @babel/polyfill --require @babel/register'",
     "graph": "export NODE_ENV=graph && nodemon --exec babel-node server/graph.js ",
     "build-server": "babel server/server.js -d dist",
