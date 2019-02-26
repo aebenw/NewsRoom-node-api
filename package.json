@@ -8,7 +8,11 @@
     "build-babel": "babel -d ./build ./server -s",
     "build": "npm run clean && npm run build-babel",
     "start": "npm run build && node ./build/server.js",
+<<<<<<< HEAD
     "dev": "webpack --config webpack.production.js",
+=======
+    "dev": "webpack --watch",
+>>>>>>> 8f2b2151cf76014db83ccc367f5c7316fe11d0b7
     "test": "export NODE_ENV=test && nodemon --exec 'mocha */tests/**.test.js --require @babel/polyfill --require @babel/register'",
     "graph": "export NODE_ENV=graph && nodemon --exec babel-node server/graph.js ",
     "build-server": "babel server/server.js -d dist",
@@ -65,10 +69,14 @@
     "mocha": "^5.2.0",
     "superagent": "^4.1.0",
     "supertest": "^3.4.2",
+<<<<<<< HEAD
     "webpack-cli": "^3.2.3",
     "webpack-dev-server": "^3.2.1",
     "webpack-merge": "^4.2.1",
     "webpack-node-externals": "^1.7.2"
+=======
+    "webpack-cli": "^3.2.3"
+>>>>>>> 8f2b2151cf76014db83ccc367f5c7316fe11d0b7
   },
   "engines": {
     "node": "11.x"
