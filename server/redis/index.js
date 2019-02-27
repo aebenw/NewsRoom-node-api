@@ -18,8 +18,21 @@ export async function topStoryCache(req, res, next){
   })
 }
 
+
+
 export function sourceCache(req, res, next){
   client.get("sources", (err, data) => {
+    if(err || !data){
+      next()
+    } else if(data){
+      res.status(200).send(data)
+    }
+  })
+}
+
+
+export function sourceHash(req, res, next){
+  client.hvals("hsources", (err, data) => {
     if(err || !data){
       next()
     } else if(data){

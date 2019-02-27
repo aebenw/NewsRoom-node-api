@@ -19,10 +19,18 @@ export const callSources = async (req, res) => {
   // Redis Caching for news sources
   // a lot of work is done to fetch their sources
   // and to get their pictures
-
+  // a large cache
 
   let cachedSources = JSON.stringify(answer)
   client.set('sources', cachedSources)
+
+  // caching for quick search 
+  answer.forEach(source => {
+    const { _id, img, name } = source
+    let obj = {_id, img}
+    let object = JSON.stringify(obj)
+    client.hset('hsources', name, object)
+  })
 };
 
 export const showSource = (req, res) => {
@@ -37,7 +45,15 @@ export const showSource = (req, res) => {
 }
 
 
+// export const searchSources = async (req, res) => {
+//   let sources = await Source.find({id: new RegExp(req.body.source)})
+//   res.status(200).send(sources)
+// }
+
 export const searchSources = async (req, res) => {
-  let sources = await Source.find({id: new RegExp(req.body.source)})
-  res.status(200).send(sources)
+  let pattern = `*` + req.body.source + `*`
+  // hsources 0 MATCH *c*
+  client.hscan('hsources', 0, 'MATCH', pattern, (err, data) => {
+    res.status(200).send(data[1])
+  })
 }

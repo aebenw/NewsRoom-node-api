@@ -3,7 +3,7 @@
 Object.defineProperty(exports, "__esModule", {
   value: true
 });
-exports.showArticle = exports.callArticles = void 0;
+exports.getMostRecent = exports.showArticle = exports.callArticles = void 0;
 
 var _newsapi = _interopRequireDefault(require("newsapi"));
 
@@ -23,22 +23,21 @@ const callArticles = async (req, res) => {
     country: 'us',
     category: "general"
   });
-  let response = await (0, _connectingFuncs.asyncMapping)(articles.articles, _models.Article.findOrCreateWithSource);
-  res.status(200).send(response); // Redis Caching for top stories, not ready for production
+  let response = await (0, _connectingFuncs.asyncMapping)(articles.articles, _models.Article.findOrCreateWithSource); // res.status(200).send(response)
+  //
+  // // Redis Caching for top stories, not ready for production
 
-  let cachedArticles = response.map(article => JSON.stringify(article));
+  response.map(article => {
+    let stringed = JSON.stringify(article);
 
-  _config.client.lpush('topStories', cachedArticles);
+    _config.client.lpush('topStories', stringed);
+  }); //
 
-  let mostRecent = [];
+  for (let i = 0; i < 5; i++) {
+    let story = response[i]._doc.title;
 
-  for (let i = 0; i < 6; i++) {
-    debugger;
-    console.log(response[i]._doc.title);
-
-    _config.client.push(response[i]._doc.title);
-  } // client.lpush('mostRecent', ...mostRecent)
-
+    _config.client.sadd('mostRecent', story);
+  }
 };
 
 exports.callArticles = callArticles;
@@ -50,4 +49,16 @@ const showArticle = async (req, res) => {
 };
 
 exports.showArticle = showArticle;
+
+const getMostRecent = async () => {
+  let articles = await newsapi.v2.topHeadlines({
+    language: 'en',
+    country: 'us',
+    category: "general",
+    pageSize: 5
+  });
+  return articles.articles;
+};
+
+exports.getMostRecent = getMostRecent;
 //# sourceMappingURL=articleController.js.map

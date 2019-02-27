@@ -29,8 +29,7 @@ if (process.env.REDISTOGO_URL) {
   const rtg = require("url").parse(process.env.REDISTOGO_URL);
 
   exports.client = client = _redis.default.createClient(rtg.port, rtg.hostname);
-
-  _redis.default.auth(rtg.auth.split(":")[1]);
+  client.auth(rtg.auth.split(":")[1]);
 } else {
   exports.client = client = _redis.default.createClient();
 }

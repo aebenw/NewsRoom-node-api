@@ -1,11 +1,12 @@
 const express = require('express');
 const source = require('../controller/sourceController');
 const sourcePath = express();
-import { sourceCache } from '../redis'
+import { sourceHash } from '../redis'
 
 
   sourcePath.route('/')
-    .get(sourceCache, source.callSources);
+    // .get(sourceCache, source.callSources);
+    .get(sourceHash, source.callSources);
 
   sourcePath.route('/search')
   .post(source.searchSources);

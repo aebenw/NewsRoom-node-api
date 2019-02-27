@@ -44,6 +44,7 @@ const showSource = (req, res) => {
     path: 'articles',
     select: "author title description url urlToImage content"
   }).exec((err, posts) => {
+    posts.articles.reverse();
     res.status(200).send(JSON.stringify(posts, undefined, 2));
   });
 };
@@ -52,12 +53,9 @@ exports.showSource = showSource;
 
 const searchSources = async (req, res) => {
   let sources = await _models.Source.find({
-    id: req.body.source
+    id: new RegExp(req.body.source)
   });
-
-  _config.client.hgetall(req.body.source, (err, obj) => {
-    res.status(200).send(obj);
-  });
+  res.status(200).send(sources);
 };
 
 exports.searchSources = searchSources;
